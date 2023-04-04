@@ -3,17 +3,17 @@ from fastapi.requests import Request
 from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
+templates = Jinja2Templates(directory='templates')
 
 
 @app.get('/')
-async def index():
-    conteudo = """
-        <center>
-            <h1>Testando <u>FastAPI</u> mais uma vez</h1>
-            <span>Testando</span>
-        </center>
-    """
-    return HTMLResponse(content=conteudo)
+async def index(request: Request, usuario: str = 'Victor Roza'):
+    context = {
+        'request': request,
+        'usuario': usuario
+    }
+
+    return templates.TemplateResponse('index.html', context)
 
 
 if __name__ == '__main__':
