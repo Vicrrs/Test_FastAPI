@@ -1,11 +1,18 @@
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 
 
 @app.get('/')
 async def index():
-    return "Teste com FASTAPI"
+    conteudo = """
+        <center>
+            <h1>Testando <u>FastAPI</u> mais uma vez</h1>
+            <span>Testando</span>
+        </center>
+    """
+    return HTMLResponse(content=conteudo)
 
 
 if __name__ == '__main__':
