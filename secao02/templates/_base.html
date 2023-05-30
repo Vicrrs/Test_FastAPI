@@ -6,14 +6,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Testando API</title>
         <style>
-            body {
-                background: rgb(255, 255, 255);
-            }
-            .container { 
-                width: 700px; 
-                margin-left: auto;
-                margin-right: auto; 
-            }
+        
+            {% block blockname %}
+                body {
+                    background: rgb(255, 255, 255);
+                }
+                .container { 
+                    width: 700px; 
+                    margin-left: auto;
+                    margin-right: auto; 
+                }
+            {% endblock blockname %}
+            
         </style>
 
     </head>
