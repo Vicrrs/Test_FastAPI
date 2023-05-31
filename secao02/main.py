@@ -28,6 +28,21 @@ async def servicos(request: Request):
 
     return templates.TemplateResponse('servicos.html', context=context)
 
+
+@app.post('/servicos')
+async def card_servicos(request: Request):
+    form = await request.form()
+
+    servico: str = form.get('servico')
+    print(f"Servico: {servico}")
+
+    context = {
+        "request": request,
+    }
+
+    return templates.TemplateResponse('servicos.html', context=context)
+
+
 if __name__ == "__main__":
     import uvicorn
 
