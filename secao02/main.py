@@ -11,6 +11,7 @@ from uuid import uuid4
 app = FastAPI()
 templates = Jinja2Templates(directory='templates')
 app.mount('/secao02/static', StaticFiles(directory='static'), name='static')
+app.mount('/secao02/media', StaticFiles(directory='media'), name='media')
 media = Path('media')
 
 
