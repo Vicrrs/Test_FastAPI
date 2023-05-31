@@ -2,10 +2,15 @@ from fastapi import FastAPI
 from fastapi.requests import Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
+from fastapi import UploadFile
+from pathlib import Path
+from aiofile import async_open
+
 
 app = FastAPI()
 templates = Jinja2Templates(directory='templates')
 app.mount('/secao02/static', StaticFiles(directory='static'), name='static')
+media = Path('media')
 
 
 @app.get('/')
@@ -36,9 +41,16 @@ async def card_servicos(request: Request):
     servico: str = form.get('servico')
     print(f"Servico: {servico}")
 
+    arquivo: UploadFile = form.get('arquivo')
+    print(f"Nome: {arquivo.filename}")
+    print(f"Tipo: {arquivo.content_type}")
+
     context = {
         "request": request,
     }
+
+    async with async_open(f"{media}/{arquivo.filename}", "wb") as afile:
+        await afile.write(arquivo.file.read())
 
     return templates.TemplateResponse('servicos.html', context=context)
 
