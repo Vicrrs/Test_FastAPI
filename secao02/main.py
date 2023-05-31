@@ -53,6 +53,7 @@ async def card_servicos(request: Request):
 
     context = {
         "request": request,
+        "imagem": novo_nome
     }
 
     async with async_open(f"{media}/{novo_nome}", "wb") as afile:
