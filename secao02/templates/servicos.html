@@ -13,7 +13,7 @@
 {% block container %}
     <center>
         <h3>Cadastro de Serviços</h3>
-        <form action='/servicos' method='post' autocomplet="off">
+        <form action='/servicos' enctype="multipart/form-data" method='post' autocomplet="off">
             <input type='text' name='servico' placeholder="Informe o servico" required  autofocus/>
             <button type='submit'>Cadastrar</button>
     </center>
