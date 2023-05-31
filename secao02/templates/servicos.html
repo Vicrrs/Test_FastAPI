@@ -1,8 +1,21 @@
 {% extends '_base.html' %}
 
+
+{% block style %}
+    <style>
+        body {
+            background: rgb(255, 0, 255);
+        }
+    </style>
+{% endblock %}
+    
+
 {% block container %}
     <center>
-    <h3>Estamos na página de Servicos</h3>
+        <h3>Cadastro de Serviços</h3>
+        <form action='/servicos' method='post' autocomplet="off">
+            <input type='text' name='servico' placeholder="Informe o servico" required  autofocus/>
+            <button type='submit'>Cadastrar</button>
     </center>
 {% endblock  %}
         
