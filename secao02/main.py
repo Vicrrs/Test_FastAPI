@@ -5,6 +5,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi import UploadFile
 from pathlib import Path
 from aiofile import async_open
+from uuid import uuid4
 
 
 app = FastAPI()
@@ -45,11 +46,15 @@ async def card_servicos(request: Request):
     print(f"Nome: {arquivo.filename}")
     print(f"Tipo: {arquivo.content_type}")
 
+    # Nome aleatorio para os arquivos
+    arquivo_ext: str = arquivo.filename.split('.')[1]
+    novo_nome: str = f"{str(uuid4())}.{arquivo_ext}"
+
     context = {
         "request": request,
     }
 
-    async with async_open(f"{media}/{arquivo.filename}", "wb") as afile:
+    async with async_open(f"{media}/{novo_nome}", "wb") as afile:
         await afile.write(arquivo.file.read())
 
     return templates.TemplateResponse('servicos.html', context=context)
